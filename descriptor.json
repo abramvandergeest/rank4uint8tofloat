@@ -1,0 +1,21 @@
+{
+  "name": "rank4uint8tofloat",
+  "type": "flogo:function",
+  "version": "0.0.1",
+  "title": "convert Rank4 uint to float",
+  "description": "convert rank4 tensor of uint8 to float",
+  "homepage": "https://github.com/prject-flogo/contrib/tree/master/function/number",
+  "functions": [
+    {
+      "name": "rank4uint8tofloat",
+      "description": "convert rank4 tensor of uint8 to float",
+      "varArgs": true,
+      "args": [
+        {
+          "name": "indata",
+          "type": "array"
+        }
+      ]
+    }
+  ]
+}
