@@ -22,7 +22,7 @@ func (fnRank4uint8tofloat) Name() string {
 }
 
 func (fnRank4uint8tofloat) Sig() (paramTypes []data.Type, isVariadic bool) {
-	return []data.Type{data.TypeArray, data.TypeString}, false
+	return []data.Type{data.TypeArray}, false
 }
 
 func (fnRank4uint8tofloat) Eval(params ...interface{}) (interface{}, error) {
