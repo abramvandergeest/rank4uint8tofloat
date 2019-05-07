@@ -22,12 +22,14 @@ func (fnRank4uint8tofloat) Name() string {
 }
 
 func (fnRank4uint8tofloat) Sig() (paramTypes []data.Type, isVariadic bool) {
-	return []data.Type{data.TypeArray}, false
+	return []data.Type{data.TypeArray,data.TypeFloat32,data.TypeFloat32}, false
 }
 
 func (fnRank4uint8tofloat) Eval(params ...interface{}) (interface{}, error) {
 	// Converting Rank 4 tensor of uint8 to Rank 4 tensor of float32
 	indata := params[0].([][][][]uint8)
+	mean:=params[1].(float32)
+	std:=params[2].(float32)
 	fmt.Println("BLAH")
 	var output [][][][]float32
 	for _,row0 := range indata{
@@ -36,8 +38,12 @@ func (fnRank4uint8tofloat) Eval(params ...interface{}) (interface{}, error) {
 			var outrow1 [][]float32
 			for _,row2 := range row1{
 				var outrow2 []float32
-					for _,item:=range row2{
-						outrow2=append(outrow2,float32(item))
+					for i,item:=range row2{
+						normeditem:=(float32(item)-mean)/std
+						outrow2=append(outrow2,normeditem)
+						if i==0{
+							fmt.Println(normeditem)
+						}
 					}
 				outrow1=append(outrow1,outrow2)
 
